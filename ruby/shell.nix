@@ -32,8 +32,9 @@ mkShell {
 
     mkdir -p .nix-gems
 
-    export GEM_HOME=$PWD/.nix-gems/$(ruby -e "puts RUBY_VERSION")
-    export GEM_PATH=$GEM_HOME
-    export PATH=$GEM_HOME/bin:$PATH
+    export RUBY_VERSION="$(ruby -v | awk '{ print $2 }')"
+    export GEM_HOME="$PWD/.nix-gems/$RUBY_VERSION"
+    export GEM_PATH="$GEM_HOME"
+    export PATH="$GEM_HOME/bin:$PATH"
   '';
 }
